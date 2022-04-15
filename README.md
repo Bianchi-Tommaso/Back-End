@@ -33,7 +33,7 @@ Windows:
     comando: mysql -u root -p < /dump/create_employee.sql; exit;    //Importare il DataBase
 
     Nota!: 
-    se l'ultimo comando non viene eseguito, siginifica che il Container mysql sta ancora generando i file necessari per il corretto funzionamento, attendere un paio di secondi.
+    se l'ultimo comando non viene eseguito, siginifica che il Container mysql sta ancora generando i file necessari per il corretto funzionamento, attendere qualche secondo.
 
     legenda:
         -it = interface(indica di volere una interfaccia seguito dal nome del container)
@@ -96,7 +96,7 @@ Linux:
     comando: mysql -u root -p < /dump/create_employee.sql; exit;         //Importare il DataBase
 
     Nota!: 
-    se l'ultimo comando non viene eseguito, siginifica che il Container mysql sta ancora generando i file necessari per il corretto funzionamento, attendere un paio di secondi.
+    se l'ultimo comando non viene eseguito, siginifica che il Container mysql sta ancora generando i file necessari per il corretto funzionamento, attendere qualche secondo.
 
     legenda:
         -it = interface(indica di volere una interfaccia seguito dal nome del container)
