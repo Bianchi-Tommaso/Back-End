@@ -40,7 +40,7 @@ Windows:
         bash = otteremo una interfaccia a linea di comando 
         -u = indica l'utente
         -p = parametro necessario per l'utente root se è stata definita una password per MYSQL
-        < = ?
+        < = prende in input il file
 
     Le volte succesive sarà necessario avviare il docker mysql senza il volume dump:
 
@@ -103,7 +103,7 @@ Linux:
         bash = otteremo una interfaccia a linea di comando 
         -u = indica l'utente
         -p = parametro necessario per l'utente root se è stata definita una password per MYSQL
-        < = ?
+        < = prende in input il file
 
     Le volte succesive sarà necessario avviare il docker mysql senza il volume dump:
 
