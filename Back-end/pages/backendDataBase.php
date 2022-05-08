@@ -6,6 +6,7 @@ class backendDataBase
 {
     private $start;
     private $size;
+    private $search;
     private $connessione;
     private $accesso; 
 
@@ -14,15 +15,25 @@ class backendDataBase
         $this->accesso = new accessoDB();
     }
 
-    public function POST($start, $size)
+    public function POST($start, $size, $search)
     {
         $this->start = $start;
         $this->size = $size;
         $this->connessione = $this->accesso->OpenCon();
+        $this->search = $search;
+
+        if($this->search != null)
+        {
+            $queryGet = "SELECT * FROM employees WHERE first_name LIKE '$search' LIMIT " .$start .", ".$size;
+        }
+        else
+        {
+            $queryGet = "SELECT * FROM employees LIMIT " .$start .", ".$size;
+        }
 
         $queryGet = "SELECT * FROM employees LIMIT " .$start .", ".$size;
 
-        $risultato = $this->JSON($this->connessione->query($queryGet));        
+        $risultato = $this->JSON($this->connessione->query($queryGet));
 
         return $risultato;
 

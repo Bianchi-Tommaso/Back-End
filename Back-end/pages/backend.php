@@ -4,6 +4,8 @@ require ("backendDataBase.php");
 
     $start = $_POST['start'];
     $size = $_POST['length'];
+    $search = $_POST['search'];
+
     $json_respond;
 
     $data = readPostData();
@@ -11,7 +13,7 @@ require ("backendDataBase.php");
 
 if($_SERVER['REQUEST_METHOD'] === 'POST')
 {
-    $json_respond = $backend->POST($start, $size);
+    $json_respond = $backend->POST($start, $size, $search);
 }
 else if($_SERVER['REQUEST_METHOD'] === 'GET')
 {
