@@ -22,16 +22,15 @@ class backendDataBase
         $this->connessione = $this->accesso->OpenCon();
         $this->search = $search;
 
-        if($this->search != null)
+        if($search=="")
         {
-            $queryGet = "SELECT * FROM employees WHERE first_name LIKE '$search' LIMIT " .$start .", ".$size;
+            $queryGet = "SELECT * FROM employees LIMIT " .$start .", ".$size;
+            
         }
         else
         {
-            $queryGet = "SELECT * FROM employees LIMIT " .$start .", ".$size;
+            $queryGet = "SELECT * FROM employees WHERE first_name LIKE '%".$search."%' OR last_name LIKE '%".$search."%'  LIMIT " . $start .", ". $size;
         }
-
-        $queryGet = "SELECT * FROM employees LIMIT " .$start .", ".$size;
 
         $risultato = $this->JSON($this->connessione->query($queryGet));
 

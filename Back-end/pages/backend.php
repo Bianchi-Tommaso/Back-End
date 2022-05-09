@@ -4,7 +4,9 @@ require ("backendDataBase.php");
 
     $start = $_POST['start'];
     $size = $_POST['length'];
-    $search = $_POST['search'];
+    $search = $_POST['search']['value'];
+
+  
 
     $json_respond;
 
