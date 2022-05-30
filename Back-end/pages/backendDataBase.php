@@ -15,7 +15,7 @@ class backendDataBase
         $this->accesso = new accessoDB();
     }
 
-    public function POST($start, $size, $search)
+    public function GET($start, $size, $search, $firstName, $lastName, $gender)
     {
         $this->start = $start;
         $this->size = $size;
@@ -38,17 +38,17 @@ class backendDataBase
 
     }
 
-    /*
-    public function POST($data)
+    
+    public function POST($firstName, $lastName, $gender)
     {
         $this->connessione = $this->accesso->OpenCon();
 
-        $queryPost = "INSERT INTO employees VALUES(DEFAULT, '$data->birthDate', '$data->firstName', '$data->lastName', '$data->gender', '$data->hireDate');";
+        $queryPost = "INSERT INTO employees VALUES (DEFAULT, '2003-12-26',  '$firstName', '$lastName', '$gender', '2003-12-26');";
         $this->connessione->query($queryPost);
 
         $this->accesso->CloseCon($this->connessione);
     }
-    */
+
 
     public function PUT($data)
     {
@@ -111,7 +111,7 @@ class backendDataBase
             $conta = $this->ContaPagine();
             $paginaTotale = intval($conta/ $this->size);
 
-            $json['recordsFiltered'] = $paginaTotale;
+            $json['recordsFiltered'] = $conta;
             $json['recordsTotal'] = $conta;
             
             
