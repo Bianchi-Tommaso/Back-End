@@ -50,21 +50,21 @@ class backendDataBase
     }
 
 
-    public function PUT($data)
+    public function PUT($firstName, $lastName, $gender, $id)
     {
         $this->connessione = $this->accesso->OpenCon();
 
-        $queryPut = "UPDATE employees SET birth_date = '$data->birthDate', first_name = '$data->firstName', last_name = '$data->lastName', gender = '$data->gender', hire_date = '$data->hireDate' WHERE id = '$data->id';";
+        $queryPut = "UPDATE employees SET first_name = '$firstName', last_name = '$lastName', gender = '$gender' WHERE id = '$id';";
         $this->connessione->query($queryPut);
 
         $this->accesso->CloseCon($this->connessione); 
     }
 
-    public function DELETE($data)
+    public function DELETE($id)
     {
         $this->connessione = $this->accesso->OpenCon();
 
-        $queryDelete = "DELETE FROM employees WHERE id = '$data->id';";
+        $queryDelete = "DELETE FROM employees WHERE id = '$id';";
         $this->connessione->query($queryDelete);
 
         $this->accesso->CloseCon($this->connessione); 
@@ -100,7 +100,7 @@ class backendDataBase
             {
                 array_push($json['data'], array(
 
-                    'id' => $righe["id"], 
+                    'DT_RowId' => $righe["id"], 
                     'birth_date' => $righe["birth_date"], 
                     'first_name' => $righe["first_name"], 
                     'last_name' => $righe["last_name"], 

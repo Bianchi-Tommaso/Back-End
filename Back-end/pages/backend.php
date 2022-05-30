@@ -2,30 +2,49 @@
 
 require ("backendDataBase.php");
 
+    $data = array();
+    
     $start = $_POST['start'];
     $size = $_POST['length'];
     $search = $_POST['search']['value'];
-    $firstName = $_POST['data'][0]['first_name'];
-    $lastName = $_POST['data'][0]['last_name'];
-    $gender = $_POST['data'][0]['gender'];
+    
 
     $json_respond;
 
-    $data = readPostData();
     $backend = new backendDataBase();
 
 if($_SERVER['REQUEST_METHOD'] === 'POST')
+if(isset($_POST['data']))
 {
-    if(isset($_POST['action']))
+
+    $data['id'] = array_keys($_POST['data'])[0];
+    $firstName = $_POST['data'][$data['id'] ]['first_name'];
+    $lastName = $_POST['data'][$data['id'] ]['last_name'];
+    $gender = $_POST['data'][$data['id'] ]['gender'];
+    if($_POST['action'] == "create")
     {
         $json_respond = $backend->POST($firstName, $lastName, $gender);
         $json_respond = array();
     }
+    else if($_POST['action'] == "edit")
+    {
+        
+        if($_POST['data'][$data['id']]['removed_date'] != "")
+        {
+            $json_respond = $backend->DELETE($data['id']);
+        }
+        else
+        {
+            $json_respond = $backend->PUT($firstName, $lastName, $gender, $data['id']);
+            $json_respond = array();
+        }
+    }
+}
     else
     {
         $json_respond = $backend->GET($start, $size, $search, $firstName, $lastName, $gender);
     }
-}
+
 else if($_SERVER['REQUEST_METHOD'] === 'GET')
 {
     $json_respond = $backend->GET($start, $size);
@@ -36,7 +55,7 @@ else if($_SERVER['REQUEST_METHOD'] === 'PUT')
 }
 else if($_SERVER['REQUEST_METHOD'] === 'DELETE')
 {
-    $json_respond = $backend->DELETE($data);
+    
 }
 
     header('Content-Type: application/json');      
